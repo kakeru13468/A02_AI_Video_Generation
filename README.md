@@ -1,4 +1,4 @@
-### TodoList
+### TODO
 - [ ] 實驗LLaMA模型
 - [ ] 測試 LaTeX <br>
 - [ ] 報告書第二章初稿(Mission completed)<br>
