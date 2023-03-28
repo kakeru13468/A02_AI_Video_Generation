@@ -1,5 +1,5 @@
 ### TODO
-- [x] 實驗LLaMA模型
+- [ ] 實驗LLaMA模型
 - [ ] 測試 LaTeX <br>
 - [ ] 報告書第二章初稿(Mission completed)<br>
 - [ ] 找到適合的影片生成模型<br>
