@@ -1,9 +1,9 @@
 ### TODO
-- [ ] <font color=green>實驗LLaMA模型</font>
+- [ ] 實驗LLaMA模型
 - [ ] 測試 LaTeX <br>
-- [x]  <span style="color:green">報告書第二章初稿</span><br>
+- [x]  報告書第二章初稿<br>
 - [ ] 找到適合的影片生成模型<br>
-- [ ] 找如何結合聲音與影片(Mission completed)<br>
+- [x] 找如何結合聲音與影片<br>
 - [ ] A計畫:<br>
   生成真的影片<br>
 - [ ] B計畫:<br>
