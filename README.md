@@ -1,5 +1,5 @@
 ### TodoList
--[x] 實驗LLaMA模型
+- [x] 實驗LLaMA模型
 測試 LaTeX
 報告書第二章初稿(Mission completed)
 找到適合的影片生成模型
