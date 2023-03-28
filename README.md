@@ -1,7 +1,7 @@
 ### TODO
 - [ ] 實驗LLaMA模型
 - [ ] 測試 LaTeX <br>
-- [x] <font color="green">報告書第二章初稿</font><br>
+- [x] 報告書第二章初稿<br>
 - [ ] 找到適合的影片生成模型<br>
 - [x] 找如何結合聲音與影片<br>
 - [ ] A計畫:<br>
