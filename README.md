@@ -9,10 +9,13 @@
 - [ ] A 計畫：生成真的影片
 - [ ] B 計畫：用多張圖片串成幻燈片
   
-## Text to voice and .txt
+## Text and voice
 
-**AzureOpenai.py:**
-When you run this Python code, you should wait You: and  if you need save voice and text, you should input **bye**
+### AzureOpenai.py
+
+this will write text to `text.txt` and voice to `voice.wav`
+
+type `bye` to save text and voice
 
 ## Video Audio Mixing
 
