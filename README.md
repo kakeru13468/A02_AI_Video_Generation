@@ -17,6 +17,16 @@ this will write text to `text.txt` and voice to `voice.wav`
 
 type `bye` to save text and voice
 
+#### add your api key to environment variable
+
+```shell
+export OPENAI_API_KEY=your_key
+```
+
+```shell
+export AZURE_SPEECH_KEY=your_key
+```
+
 ## Video Audio Mixing
 
 **MixVideo.py:**
