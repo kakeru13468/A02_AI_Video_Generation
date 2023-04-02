@@ -20,11 +20,11 @@ type `bye` to save text and voice
 #### add your api key to environment variable
 
 ```shell
-export OPENAI_API_KEY=your_key
+export OPENAI_API_KEY=<YOUR_OPENAI_API_KEY>
 ```
 
 ```shell
-export AZURE_SPEECH_KEY=your_key
+export AZURE_SPEECH_KEY=<YOUR_AZURE_SPEECH_KEY>
 ```
 
 ## Video Audio Mixing
