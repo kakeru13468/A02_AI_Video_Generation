@@ -29,7 +29,7 @@ export AZURE_SPEECH_KEY=<YOUR_AZURE_SPEECH_KEY>
 
 ## Video Audio Mixing
 
-###MixVideo.py:###
+### MixVideo.py ###
 
 You need to pip `FFmpeg Python` and `Moviepy` first.
 
