@@ -29,5 +29,18 @@ export AZURE_SPEECH_KEY=<YOUR_AZURE_SPEECH_KEY>
 
 ## Video Audio Mixing
 
-**MixVideo.py:**
-Check video and audio path
+###MixVideo.py:###
+
+You need to pip `FFmpeg Python` and `Moviepy` first.
+
+```shell
+pip install python-ffmpeg 
+```
+
+```shell
+pip install moviepy
+```
+
+And confirm the path for your `VOICE` and `VIDEO`
+
+The video will be saved in your root directory, You can also change the path according to your own needs.
