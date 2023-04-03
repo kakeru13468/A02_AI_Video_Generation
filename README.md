@@ -1,4 +1,4 @@
-# AI Video Generation
+# AI Video Capstone Project
 
 ## TODO
 
