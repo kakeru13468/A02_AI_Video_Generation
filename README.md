@@ -8,6 +8,8 @@
 - [ ] 研究code
 - [ ] 畫系統架構圖
 - [ ] 畫系統流程圖
+- [ ] 將chatGPT與Model結合自動化
+- [ ] 整合系統
   
 ## Text and voice
 
