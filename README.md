@@ -10,7 +10,33 @@
 - [ ] 畫系統流程圖
 - [ ] 將chatGPT與Model結合自動化
 - [ ] 整合系統
-  
+
+## Architecture
+
+```mermaid
+flowchart TD
+    A[User Interface] -->|text| B
+    B[Server] -->|video with narration| A
+    B -- text --> E[video generator]
+    E -- video --> B
+    B --> C[GPT]
+    B --> D[Azure]
+    D -->|generated voice| B
+```
+
+## Flowchart
+
+```mermaid
+flowchart TD
+ A(Start) --> B[User input]
+ B --> C[GPT]
+ C --> D[Video generator]
+ C --> E[Azure]
+ D --> F[Video]
+ E --> F
+ F --> G(End)
+```
+
 ## Text and voice
 
 ### AzureOpenai.py
@@ -31,7 +57,7 @@ export AZURE_SPEECH_KEY=<YOUR_AZURE_SPEECH_KEY>
 
 ## Video Audio Mixing
 
-### MixVideo.py ###
+### MixVideo.py
 
 You need to pip `FFmpeg Python` and `Moviepy` first.
 
