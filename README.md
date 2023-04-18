@@ -52,7 +52,7 @@ gantt
 
     section 報告書
     檢查格式             : 2023-05-12, 1w
-    收件截止日期             : milestone, 2023-05-30, 1d
+    收件截止日期          : milestone, 2023-05-30, 1d
 ```
 
 ## Text and voice
