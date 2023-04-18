@@ -1,4 +1,4 @@
-# AI Video Capstone Project
+# AI Video Capstone Project(WIP)
 
 ## TODO
 
