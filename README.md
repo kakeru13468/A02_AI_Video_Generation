@@ -45,8 +45,14 @@ gantt
     dateFormat  YYYY-MM-DD
 
     section Section
-    尋找適合模型         : a1, 2023-03-01, 30d
-    整合系統            : active, after a1, 30d
+    尋找適合模型         : a1, 2023-03-21, 30d
+    整合系統             : active, after a1, 30d
+    第一次期末報告       : crit, milestone, 2023-06-08,  8min
+    第二次期末報告       : crit, milestone, 2024-01-08,  8min %%FIXME
+
+    section 報告書
+    檢查格式             : 2023-05-12, 1w
+    收件截止日期             : milestone, 2023-05-30, 1d
 ```
 
 ## Text and voice
