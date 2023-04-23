@@ -18,8 +18,9 @@ flowchart TD
     B[Server] -->|video with narration| A
     B -- text --> E[video generator]
     E -- video --> B
-    B --> C[GPT]
-    B --> D[Azure]
+    B -->|text prompt| C[GPT]
+    C -->|video script,\n text narration| B
+    B -->|text| D[Azure]
     D -->|generated voice| B
 ```
 
