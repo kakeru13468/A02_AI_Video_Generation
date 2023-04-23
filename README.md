@@ -16,11 +16,11 @@
 flowchart TD
     A[User Interface] -->|text| B
     B[Server] -->|video with narration| A
-    B -- text --> E[video generator]
-    E -- video --> B
-    B -->|text prompt| C[GPT]
+    B --->|text| E[video generator]
+    E -->|video| B
+    B --->|text prompt| C[GPT]
     C -->|video script,\n text narration| B
-    B -->|text| D[Azure]
+    B --->|text| D[Azure]
     D -->|generated voice| B
 ```
 
@@ -39,6 +39,7 @@ flowchart TD
 
 ## Gantt Chart
 
+<!-- FIXME -->
 ```mermaid
 gantt
     todayMarker
