@@ -28,13 +28,12 @@ flowchart TD
 
 ```mermaid
 flowchart TD
- A(Start) --> B[User input]
- B --> C[GPT]
- C --> D[Video generator]
- C --> E[Azure]
- D --> F[Video]
- E --> F
- F --> G(End)
+ A(Start) --> B[/User input/]
+ B --> C[Call GPT API]
+ C --> D[Generate video from script]
+ C --> E[Call Azure text-to-speech API]
+ D  & E --> F[Combine video and audio with FFmpeg]
+ F --> G(Display video on web UI)
 ```
 
 ## Gantt Chart
