@@ -87,6 +87,9 @@ setx OPENAI_API_BASE "REPLACE_WITH_YOUR_ENDPOINT_HERE"
 setx AZURE_SPEECH_KEY "YOUR_AZURE_SPEECH_KEY"
 ```
 
+Notes:
+
+If there is an error with ``` AZURE_SPEECH_REGION ```, please change it to ``` eastasia ```.
 ## Video Audio Mixing
 
 ### MixVideo.py
