@@ -2,6 +2,7 @@ import os
 import openai
 import azure.cognitiveservices.speech as speechsdk
 
+#TODO rename class name, function name, and parameter name
 class create():
     def __init__(self):
         pass
