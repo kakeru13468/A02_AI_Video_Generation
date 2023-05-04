@@ -57,11 +57,9 @@ gantt
 
 ## Text and voice
 
-### AzureOpenai.py
+### AzureOpenaiFuntion.py
 
-this will write text to `text.txt` and voice to `voice.wav`
-
-type `bye` to save text and voice
+This program will modify the user's text and generate speech. It will generate two files, `text.txt` and `voice.wav`, to store the modified text and the corresponding speech, respectively.
 
 #### add your api key to environment variable
 
