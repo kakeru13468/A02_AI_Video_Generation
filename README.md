@@ -45,6 +45,8 @@ gantt
     dateFormat  YYYY-MM-DD
 
     section Section
+    找尋專題老師       : active, a1, 2022-12-07, 6d
+    蒐集相關文獻      : active, after a1, 2022-12-20, 70d
     尋找適合模型         : a1, 2023-03-21, 30d
     整合系統             : active, after a1, 30d
     第一次期末報告       : crit, milestone, 2023-06-08,  8min
