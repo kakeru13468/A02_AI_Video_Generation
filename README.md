@@ -44,7 +44,7 @@ gantt
     todayMarker
     dateFormat  YYYY-MM-DD
 
-    section Section
+    section 專題進度
     找尋專題老師       :  2022-12-07, 6d
     蒐集相關文獻      : 2022-12-20, 70d
     確認專題方向      : 2023-02-28, 7d
@@ -52,8 +52,8 @@ gantt
     尋找適合模型         : 2023-03-14, 18d
     整合系統             : 2023-04-01, 14d
     測試與展現初步成果  : active, 2023-04-15, 30d
-    第一次期末報告       : crit, milestone, 2023-06-08,  8min
-    第二次期末報告       : crit, milestone, 2024-01-08,  8min %%FIXME
+    專題（一）期末報告       : crit, milestone, 2023-06-08,  8min
+    專題（二）期末報告       : crit, milestone, 2024-01-08,  8min %%FIXME
 
     section 報告書
     檢查格式             : 2023-05-12, 1w
@@ -61,7 +61,7 @@ gantt
     第二章定稿          : 2023-03-21, 1w
     第三章初稿          : 2023-03-28, 28d
     第三章定稿          : 2023-04-25, 1w
-    第四、五章初稿          : activate, 2023-05-02, 1w
+    第四、五章初稿          : active, 2023-05-02, 1w
     第四、五章定稿          : 2023-05-09, 5d
     收件截止日期          : milestone, 2023-05-30, 1d
 ```
