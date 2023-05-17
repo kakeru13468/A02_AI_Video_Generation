@@ -1,14 +1,22 @@
 import os
 import azure.cognitiveservices.speech as speechsdk
 
-def Voice(voice):
+#TODO add language selection
+def Voice(text):
 	speech_config = speechsdk.SpeechConfig(subscription=os.environ.get('AZURE_SPEECH_KEY'), region='eastasia')
-	speech_config.speech_synthesis_language = "en-US"
-	speech_config.speech_synthesis_voice_name = 'zh-TW-HsiaoYuNeural'
-	audio_config = speechsdk.audio.AudioOutputConfig(filename="./voice/voice.wav")
 
-	speech_synthesizer = speechsdk.SpeechSynthesizer(
-		speech_config=speech_config, 
-		audio_config=audio_config)
+	# speech_config.speech_synthesis_voice_name = 'zh-TW-HsiaoYuNeural'
+	speech_config.speech_synthesis_voice_name = "zh-CN-YunxiNeural"
 
-	speech_synthesizer.speak_text_async(voice).get()
+	# Check if the directory exists
+	if not os.path.exists("./media/voice"):
+		# Create a new directory
+		os.mkdir("./media/voice")
+
+	audio_config = speechsdk.audio.AudioOutputConfig(filename='./media/voice/' + text.replace(' ', '_')[:16] + '.wav')
+
+	speech_synthesizer = speechsdk.SpeechSynthesizer(speech_config=speech_config, audio_config=audio_config)
+
+	print('generating voice')
+	speech_synthesis_result = speech_synthesizer.speak_text_async(text).get()
+	print('voice generated')
