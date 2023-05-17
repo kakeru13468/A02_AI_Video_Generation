@@ -1,0 +1,5 @@
+text: a person is skating in the park.
+base on the text, generate a set of:
+1. scripts, and
+2. prompts for image/video generation
+of several scene that can be combined into a interesting story.
