@@ -1,5 +1,9 @@
 __pycache__/
-transcription.txt
-voice.wav
 .DS_Store
 .vscode
+
+*.wav
+*.mp4
+*.mp3
+
+transcription.txt
