@@ -13,3 +13,4 @@ transformers==4.28.1
 moviepy==1.0.3
 diffusers==0.16.1
 python-ffmpeg==2.0.4
+tomesd
