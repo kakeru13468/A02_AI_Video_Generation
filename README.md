@@ -2,12 +2,10 @@
 
 ## TODO
 
-- [ ] 報告書第三章
 - [ ] 完成系統架構圖
 - [ ] 完成系統流程圖
 - [ ] 完成甘特圖
 - [ ] 測試 frame interpolation
-- [ ] 將 ChatGPT 與 Model 結合自動化
 - [ ] 整合系統
 
 ## Architecture
