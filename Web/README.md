@@ -1,4 +1,4 @@
-# project_vue
+# web_vue
 
 ## Project setup
 ```
