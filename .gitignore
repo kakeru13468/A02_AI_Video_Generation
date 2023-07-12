@@ -9,3 +9,4 @@ __pycache__/
 transcription.txt
 
 node_modules/
+dist
