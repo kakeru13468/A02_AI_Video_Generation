@@ -21,12 +21,6 @@ def Text(input):
 		messages = conversation
 	)
 
-
 	ans = response['choices'][0]['message']['content']
-	#conversation.append({"role": "assistant", "content": ans})
-
-	# write to file
-	with open('./script.txt', 'w', encoding='UTF-8') as f:
-		print(ans, file=f)
 
 	return ans
