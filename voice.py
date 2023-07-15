@@ -13,10 +13,14 @@ def Voice(text):
 		# Create a new directory
 		os.mkdir("./media/voice")
 
-	audio_config = speechsdk.audio.AudioOutputConfig(filename='./media/voice/' + text.replace(' ', '_')[:16] + '.wav')
+	filename = './media/voice/' + text.replace(' ', '_')[:16] + '.wav'
+
+	audio_config = speechsdk.audio.AudioOutputConfig(filename=filename)
 
 	speech_synthesizer = speechsdk.SpeechSynthesizer(speech_config=speech_config, audio_config=audio_config)
 
 	print('generating voice')
 	speech_synthesis_result = speech_synthesizer.speak_text_async(text).get()
 	print('voice generated')
+
+	return filename
