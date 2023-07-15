@@ -3,10 +3,10 @@ import torch
 import imageio
 from diffusers import TextToVideoZeroPipeline
 import tomesd
-from accelerate import Accelerator
+# from accelerate import Accelerator
 
-accelerator = Accelerator()
-device = accelerator.device
+# accelerator = Accelerator()
+# device = accelerator.device
 
 def text2video(prompt, fps=4, dry_run=False):
 	model_id = "runwayml/stable-diffusion-v1-5"
@@ -15,10 +15,11 @@ def text2video(prompt, fps=4, dry_run=False):
 	if not dry_run:
 		#if on mac
 		if sys.platform == "darwin":
-			# device = torch.device("mps" if torch.backends.mps.is_available() else "cpu")
+			device = torch.device("mps" if torch.backends.mps.is_available() else "cpu")
 			pipe = TextToVideoZeroPipeline.from_pretrained(model_id).to(device)
 			pipe.enable_attention_slicing() #for low memory usage
 		else:
+			device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 			pipe = TextToVideoZeroPipeline.from_pretrained(model_id, torch_dtype=torch.float16).to(device)
 			tomesd.apply_patch(pipe, ratio=0.5)
 
