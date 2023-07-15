@@ -1,9 +1,12 @@
 __pycache__/
 .DS_Store
 .vscode
+node_modules/
+dist/
 
 *.wav
 *.mp4
 *.mp3
 
 script.txt
+test.py
