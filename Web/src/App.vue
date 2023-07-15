@@ -5,7 +5,7 @@
       <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded-full ">generate</button>
       <!--<div class="p-2 col-span-3 h-full bg-indigo-400"></div>-->
       <div class="col-span-3 h-full bg-indigo-400 max-w-sm rounded overflow-hidden shadow-lg"></div>
-      <video class="w-full col-span-9 aspect-video bg-black" controls></video>
+      <video class="w-full col-span-8 aspect-video bg-black" controls></video>
     </div>
   </div>
 </template>
