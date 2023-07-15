@@ -1,10 +1,11 @@
 <template>
   <div class="mx-4 pt-16 lg:mx-32">
     <div class="grid grid-cols-12 max-h-screen grid-flow-row auto-cols-max gap-4">
-      <textarea class="h-8 border col-span-10 max-h-24 resize-none"></textarea>
-      <button type="button" class="border rounded-sm col-span-2">generate</button>
-      <div class="p-2 col-span-3 h-full bg-indigo-400"></div>
-      <video src="../../media/combined.mp4" class="w-full col-span-9 aspect-video bg-black" controls></video>
+      <textarea class="h-8 border col-span-10 max-h-24 resize-none area-lg"  placeholder="prompt"></textarea>
+      <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded-full ">generate</button>
+      <!--<div class="p-2 col-span-3 h-full bg-indigo-400"></div>-->
+      <div class="col-span-3 h-full bg-indigo-400 max-w-sm rounded overflow-hidden shadow-lg"></div>
+      <video class="w-full col-span-9 aspect-video bg-black" controls></video>
     </div>
   </div>
 </template>
