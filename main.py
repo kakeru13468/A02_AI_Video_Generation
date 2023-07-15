@@ -1,42 +1,24 @@
-import torch
-import torch.nn as nn
-import imageio
-import tomesd
-from diffusers import TextToVideoZeroPipeline
-from AzureOpenaiFunction import create
-from MixVideo import mix
-from moviepy.editor import *
-    
-# load stable diffusion model weights
-model_id_1 = "runwayml/stable-diffusion-v1-5"
-model_id_2 = "dreamlike-art/dreamlike-photoreal-2.0"
+import mixVideo
+import text
+import voice
+import text2video
 
 
-# create a TextToVideoZero pipeline 
-pipe = TextToVideoZeroPipeline.from_pretrained(model_id_1, torch_dtype=torch.float16).to("cuda")
-tomesd.apply_patch(pipe, ratio=0.5)
-
-# define the text prompt
-text = input("User: ")
-prompt = create.Text(text)
-print("Generated story sentence:", prompt)
-
-voice = create.Voice(prompt)
-print("Generated voice: success")
-
-# generate the video using our pipeline
-result = pipe(prompt=prompt).images
-result = [(r * 255).astype("uint8") for r in result]
-
-# save the resulting image
-imageio.mimsave("./video/video2.mp4", result, fps=2)
-#-------------------------error-------------------------
+def getLine(text, type, line):
+	script_start = text.index(type+':') + len(type+':')
+	script_end = text.index('\n\n')
+	if type == 'Prompts': script_end = -1
+	paragraph = text[script_start:script_end].strip().split('\n')[line].split('. ', 1)[-1]
+	return paragraph
 
 
-# get video and voice path, order final video path
-#gnerated_voice = "/home/kakeru/ProjectTest/venv/voice/voice.wav"
-#gnerated_video = "/home/kakeru/ProjectTest/venv/video/video2.mp4"
+if __name__ == '__main__':
+	input = input("User: ")
+	text = text.Text(input)
+	script = getLine(text, "Scripts", 0)
+	prompt = getLine(text, "Prompts", 0)
+	
+	voice = voice.Voice(script)
+	video = text2video.text2video(prompt, fps=2,dry_run=False)
 
-# Merge video and voice
-#mix.merge_video_audio(gnerated_voice, gnerated_video)
-
+	mixVideo.merge_video_audio(video, voice, "./media/output.mp4")
