@@ -1,5 +1,5 @@
 <template>
-  <div class="gap-4 mx-4 pt-16 lg:mx-32">
+  <div class="container gap-4 mx-auto pt-16">
     <div class="grid grid-cols-12 max-h-screen grid-flow-row auto-cols-max gap-1 lg:gap-2">
       <textarea class="h-8 border col-span-8 md:col-span-10 max-h-24 resize-none area-lg"  placeholder="prompt"></textarea>
       <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold px-2 col-span-4 md:col-span-2 rounded-full ">generate</button>
