@@ -4,7 +4,7 @@
       <textarea class="h-8 border col-span-8 md:col-span-10 max-h-24 resize-none area-lg" placeholder="prompt"></textarea>
       <button type="button"
         class="bg-blue-500 hover:bg-blue-700 text-white font-bold px-2 col-span-4 md:col-span-2 rounded-full "
-        onclick="changeVideoName()">generate</button>
+        @click="changeVideoName()">generate</button>
       <!--<div class="p-2 col-span-3 h-full bg-indigo-400"></div>-->
       <div class="col-span-3">
         <div class="col-span-full w-full p-4 h-2/5 bg-indigo-400 rounded overflow-hidden shadow-lg">Parameter</div>
@@ -39,6 +39,10 @@
 export default {
   name: 'App',
   components: {
+  },
+  methods: {
+    changeVideoName() {
+    }
   }
 }
 </script>
