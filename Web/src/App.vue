@@ -4,10 +4,19 @@
       <textarea class="h-8 border col-span-8 md:col-span-10 max-h-24 resize-none area-lg"  placeholder="prompt"></textarea>
       <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold px-2 col-span-4 md:col-span-2 rounded-full ">generate</button>
       <!--<div class="p-2 col-span-3 h-full bg-indigo-400"></div>-->
-      <div class="md:col-span-3 col-span-full w-full p-4 h-full bg-indigo-400 rounded overflow-hidden shadow-lg"></div>
+      <div class="md:col-span-3">
+        <div class="col-span-full w-full p-4 h-2/5 bg-indigo-400 rounded overflow-hidden shadow-lg">Parameter</div>
+        <div class="col-span-full mt-4 w-full p-4 h-3/5 bg-teal-500 rounded overflow-hidden shadow-lg relative">
+          Script
+          <div class="flex justify-between items-start">
+            <button type="button" class="absolute top-4 right-1 bg-blue-500 hover:bg-blue-700 text-white font-bold px-2 rounded-full">copy</button>
+          </div>
+        </div>
+        
+      </div>
       <div class="md:col-span-9">
         <video class="w-full col-span-full rounded aspect-video bg-black" controls></video>
-        <div class="mt-4 flex">
+        <div class="mt-4 flex ">
           <input class="appearance-none bg-transparent border-none text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" placeholder="Show Video name" aria-label="Full name" disabled="disabled">
           <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
             <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
