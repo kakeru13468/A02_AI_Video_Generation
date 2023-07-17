@@ -1,3 +1,5 @@
+import sys
+
 import mixVideo
 import text
 import voice
@@ -13,7 +15,7 @@ def getLine(text, type, line):
 
 
 if __name__ == '__main__':
-	input = input("User: ")
+	input = sys.argv[1]
 	text = text.Text(input)
 	script = getLine(text, "Scripts", 0)
 	prompt = getLine(text, "Prompts", 0)
