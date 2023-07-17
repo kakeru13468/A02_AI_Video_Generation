@@ -13,7 +13,7 @@ def Voice(text):
 		# Create a new directory
 		os.mkdir("./media/voice")
 
-	filename = './media/voice/' + text.replace(' ', '_')[:16] + '.wav'
+	filename = './media/voice/' + text.replace(' ', '_')[:24] + '.wav'
 
 	audio_config = speechsdk.audio.AudioOutputConfig(filename=filename)
 
