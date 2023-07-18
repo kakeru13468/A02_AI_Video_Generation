@@ -17,7 +17,7 @@ app.post('/generate', (req, res) => {
 
 	let args = [path.join(absolutePath, 'main.py'), prompt, dry_run? '--dry-run' : ''];
 
-	let child_process = spawn('python', args);
+	let child_process = spawn('python', args, {cwd: absolutePath});
 	
 	child_process.stdout.on('data', (data) => {
 		console.log(`stdout: ${data}`);
