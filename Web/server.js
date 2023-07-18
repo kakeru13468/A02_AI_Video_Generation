@@ -18,13 +18,23 @@ app.post('/generate', (req, res) => {
 	let args = [path.join(absolutePath, 'main.py'), prompt, dry_run? '--dry-run' : ''];
 
 	let child_process = spawn('python', args, {cwd: absolutePath});
+	let videoPath = '';
 	
 	child_process.stdout.on('data', (data) => {
 		console.log(`stdout: ${data}`);
+		if (String(data).match(/\.\/media\/[\d]*\.mp4/)) {
+			videoPath = String(data).match(/\.\/media\/[\d]*\.mp4/)[0];
+		}
 	});
 	child_process.stderr.on('data', (data) => {
 		console.log(`stderr: ${data}`);
 	});
+	child_process.on('close', (code) => {
+		console.log(`child process exited with code ${code}`);
+
+		res.send(videoPath);
+	});
+
 });
 
 app.listen(port, () => console.log(`App listening on port ${port}.`))
