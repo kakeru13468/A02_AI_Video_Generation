@@ -13,7 +13,7 @@ def Voice(text):
 		# Create a new directory
 		os.mkdir("./media/voice")
 
-	filename = './media/voice/' + text.replace(' ', '_')[:24] + '.wav'
+	filename = './media/voice/' + text.replace(' ', '_')[:24] + str(hash(text)) + '.wav'
 
 	audio_config = speechsdk.audio.AudioOutputConfig(filename=filename)
 
@@ -23,4 +23,14 @@ def Voice(text):
 	speech_synthesis_result = speech_synthesizer.speak_text_async(text).get()
 	print('voice generated')
 
-	return filename
+	if speech_synthesis_result.reason == speechsdk.ResultReason.SynthesizingAudioCompleted:
+		print("Speech synthesized for text [{}]".format(text))
+		return filename
+	elif speech_synthesis_result.reason == speechsdk.ResultReason.Canceled:
+		cancellation_details = speech_synthesis_result.cancellation_details
+		print("Speech synthesis canceled: {}".format(cancellation_details.reason))
+		if cancellation_details.reason == speechsdk.CancellationReason.Error:
+			if cancellation_details.error_details:
+				print("Error details: {}".format(cancellation_details.error_details))
+				print("Did you set the speech resource key and region values?")
+		return None
