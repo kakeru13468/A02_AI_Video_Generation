@@ -1,23 +1,28 @@
 <template>
   <div class="container gap-4 mx-auto pt-16">
-    <div class="grid grid-cols-12 max-h-screen grid-flow-row auto-cols-max gap-1 lg:gap-2">
-      <textarea class="h-8 border col-span-8 md:col-span-10 max-h-24 resize-none area-lg" placeholder="prompt"></textarea>
+    <div class="grid grid-cols-12 gap-1 ">
+      <textarea class="flex-wrap sm:col-span-12 md:col-span-10 lg:col-span-10 h-8 border max-h-24 resize-none area-lg"
+        placeholder="prompt"></textarea>
       <button type="button"
-        class="bg-blue-500 hover:bg-blue-700 text-white font-bold px-2 col-span-4 md:col-span-2 rounded-full "
+        class="bg-blue-500 hover:bg-blue-700 text-white font-bold px-2 sm:col-span-12 md:col-span-2 lg:col-span-2 rounded-full "
         @click="changeVideoName()">generate</button>
       <!--<div class="p-2 col-span-3 h-full bg-indigo-400"></div>-->
-      <div class="col-span-3">
-        <div class="col-span-full w-full p-4 h-2/5 bg-indigo-400 rounded overflow-hidden shadow-lg">Parameter</div>
-        <div class="col-span-full mt-4 w-full p-4 h-3/5 bg-teal-500 rounded overflow-hidden shadow-lg relative">
-          Script
-          <div class="flex justify-between items-start">
-            <button type="button"
-              class="absolute top-4 right-1 bg-blue-500 hover:bg-blue-700 text-white font-bold px-2 rounded-full">copy</button>
-          </div>
-        </div>
 
+      <div
+        class="sm:col-span-12 md:col-start-1 md:col-end-6 lg:col-start-1 lg:col-end-4 w-full p-4 bg-indigo-400 rounded overflow-hidden shadow-lg">
+        Parameter
       </div>
-      <div class="col-span-9">
+      
+      <div
+        class="sm:col-span-12 md:col-start-1 md:col-end-6 lg:col-start-1 lg:col-end-4 mt-4 w-full p-4 bg-teal-500 rounded overflow-hidden shadow-lg relative">
+        Script
+        <div class="flex justify-between items-start">
+          <button type="button"
+            class="absolute top-4 right-1 bg-blue-500 hover:bg-blue-700 text-white font-bold px-2 rounded-full">copy</button>
+        </div>
+      </div>
+
+      <div class="sm:col-span-12 md:col-start-6 md:col-end-13 md:row-start-2 lg:col-start-4 lg:col-end-13">
         <video class="w-full col-span-full rounded aspect-video bg-black" controls></video>
         <div class="mt-4 flex ">
           <span id="videoName" class="mr-3 py-1 px-2">My Video</span>
@@ -30,16 +35,15 @@
           </button>
         </div>
       </div>
+
     </div>
   </div>
 </template>
 
 <script>
-
 export default {
   name: 'App',
-  components: {
-  },
+  components: {},
   methods: {
     changeVideoName() {
     }
@@ -54,5 +58,4 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-}
-</style>
+}</style>
