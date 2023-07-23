@@ -22,7 +22,7 @@
         </div>
       </div>
 
-      <div class="sm:col-span-12 md:col-start-6 md:col-end-13 md:row-start-2 lg:col-start-4 lg:col-end-13">
+      <div class="sm:col-span-12 md:col-start-6 md:col-end-13 md:row-start-2 md:row-end-4 lg:col-start-4 lg:col-end-13">
         <video class="w-full col-span-full rounded aspect-video bg-black" controls></video>
         <div class="mt-4 flex ">
           <span id="videoName" class="mr-3 py-1 px-2">My Video</span>
