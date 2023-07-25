@@ -1,21 +1,22 @@
 <template>
-  <nav class="flex w-full flex-wrap items-center justify-between py-2 bg-neutral-50 lg:py-4">
+  <nav class="flex w-full flex-wrap items-center justify-between py-2 bg-teal-200 lg:py-4">
     <div class="flex w-full flex-wrap items-center justify-between px-3">
       <nav class="w-full rounded-md" aria-label="breadcrumb">
         <ol class="list-reset ml-2 flex">
           <li>
-            <a href="#" class="text-neutral-700 bg-neutral-50">Doc</a>
+            <a href="#" class="text-yellow-700 bg-neutral-50">Doc</a>
           </li>
           <li>
             <span class="mx-2 text-neutral-500 dark:text-neutral-200">/</span>
           </li>
           <li>
-            <a href="#" class="text-neutral-700 bg-neutral-50">about</a>
+            <a href="#" class="text-yellow-700 bg-neutral-50">about</a>
           </li>
         </ol>
       </nav>
     </div>
   </nav>
+
 
   <div class="container gap-4 mx-auto pt-12">
     <div class="grid grid-cols-12 gap-1 ">
@@ -56,8 +57,8 @@
     </div>
   </div>
 
-  <footer class="p-4 bg-neutral-50 text-center lg:text-left">
-    <div class="p-4 text-center text-neutral-700 bg-neutral-50">
+  <footer class="p-4 bg-teal-200 text-center lg:text-left">
+    <div class="p-4 text-center text-yellow-700 bg-neutral-50">
       © 2023 Copyright : A02 Project
     </div>
   </footer>
@@ -81,5 +82,18 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
 }
 </style>
