@@ -1,38 +1,36 @@
 <template>
-  <nav class="flex w-full flex-wrap items-center justify-between py-2 bg-teal-200 lg:py-4">
+  <nav class="flex w-full flex-wrap items-center justify-between py-2 bg-neutral-50 lg:py-4">
     <div class="flex w-full flex-wrap items-center justify-between px-3">
       <nav class="w-full rounded-md" aria-label="breadcrumb">
         <ol class="list-reset ml-2 flex">
           <li>
-            <a href="#" class="text-yellow-700 bg-neutral-50">Doc</a>
+            <a href="#" class="text-neutral-700 bg-neutral-50">Doc</a>
           </li>
           <li>
             <span class="mx-2 text-neutral-500 dark:text-neutral-200">/</span>
           </li>
           <li>
-            <a href="#" class="text-yellow-700 bg-neutral-50">about</a>
+            <a href="#" class="text-neutral-700 bg-neutral-50">about</a>
           </li>
         </ol>
       </nav>
     </div>
   </nav>
 
-
   <div class="container gap-4 mx-auto pt-12">
     <div class="grid grid-cols-12 gap-1 ">
       <textarea class="flex-wrap sm:col-span-12 md:col-span-10 lg:col-span-10 h-8 border max-h-24 resize-none area-lg"
-        placeholder="prompt"></textarea>
+        placeholder="prompt" v-model="promptData" onkeydown="if(event.keyCode==13)return false;" @keyup.enter.prevent="getPrompt()"></textarea>
       <button type="button"
         class="bg-blue-500 hover:bg-blue-700 text-white font-bold px-2 sm:col-span-12 md:col-span-2 lg:col-span-2 rounded-full "
-        @click="changeVideoName()">generate</button>
-      <!--<div class="p-2 col-span-3 h-full bg-indigo-400"></div>-->
+        @click="getPrompt()" >generate</button>
 
       <div
         class="sm:col-span-12 md:col-start-1 md:col-end-6 lg:col-start-1 lg:col-end-4 w-full p-4 bg-indigo-400 rounded overflow-hidden shadow-lg">
         Parameter
       </div>
 
-      <div
+      <div 
         class="sm:col-span-12 md:col-start-1 md:col-end-6 lg:col-start-1 lg:col-end-4 mt-4 w-full p-4 bg-teal-500 rounded overflow-hidden shadow-lg relative">
         Script
         <div class="flex justify-between items-start">
@@ -57,8 +55,8 @@
     </div>
   </div>
 
-  <footer class="p-4 bg-teal-200 text-center lg:text-left">
-    <div class="p-4 text-center text-yellow-700 bg-neutral-50">
+  <footer class="p-4 bg-neutral-50 text-center lg:text-left">
+    <div class="p-4 text-center text-neutral-700 bg-neutral-50">
       © 2023 Copyright : A02 Project
     </div>
   </footer>
@@ -68,9 +66,19 @@
 export default {
   name: 'App',
   components: {},
-  methods: {
-    changeVideoName() {
+  data() {
+    return {
+      promptData: '',
     }
+  },
+  methods: {
+    getPrompt() {
+      const usePrompt = {
+        prompt: this.promptData
+      }
+      console.log(usePrompt)
+      this.promptData=''
+    },
   }
 }
 </script>
@@ -82,18 +90,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-}
-
-html,
-body {
-  height: 100%;
-  margin: 0;
-}
-
-footer {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
 }
 </style>
