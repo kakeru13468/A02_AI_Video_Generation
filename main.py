@@ -32,17 +32,21 @@ def main():
 
 	print("Generating script.")
 	generated_text = text.Text(input)
+
 	script = getLine(generated_text, "Scripts", 0)
+	print('Script: ' + script)
+
 	prompt = getLine(generated_text, "Prompts", 0)
+	print('Prompt: ' + prompt)
 
 	generated_voice = voice.Voice(script)
 	video = text2video.text2video(prompt, fps=4, dry_run=dry_run)
 
-	videoName =  str(hash(script + prompt))
+	videoName =  str(abs(hash(script + prompt))) + ".mp4"
 
-	outputPath = "./media/" + videoName + ".mp4"
+	outputPath = "./Web/videos/" + videoName
 	mixVideo.merge_video_audio(video, generated_voice, outputPath)
-	print(outputPath)
+	print(videoName)
 
 if __name__ == '__main__':
 	main()
