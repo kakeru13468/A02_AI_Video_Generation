@@ -10,23 +10,28 @@ const absolutePath = path.join(__dirname, '../')
 
 app.post('/generate', (req, res) => {
 	let videoPath = '';
+	const dry_run = req.query.dry_run ? true : false;
 
 	var prompt = req.query.prompt;
-	if (req.query.dry_run) {
-		var dry_run = true;
-		console.log('##### dry run #####');
+	console.log('prompt: '+prompt);
+
+	// use example video
+	if (prompt == '!example') {
 		videoPath = 'example.mp4';
+		console.log('video: '+videoPath);
+		res.send(videoPath);
 	}
 	else {
 		let args = [path.join(absolutePath, 'main.py'), prompt, dry_run? '--dry-run' : ''];
 
 		let child_process = spawn('python', args, {cwd: absolutePath});
 		console.log('##### start generating #####');
+		if (dry_run) console.log('##### dry run #####');
 		
 		child_process.stdout.on('data', (data) => {
 			console.log(`stdout: ${data}`);
-			if (String(data).match(/\.\/media\/[\d]*\.mp4/)) {
-				videoPath = String(data).match(/\.\/media\/[\d]*\.mp4/)[0];
+			if (String(data).match(/[\d]*\.mp4/)) {
+				videoPath = String(data).match(/[\d]*\.mp4/)[0];
 			}
 		});
 		child_process.stderr.on('data', (data) => {
@@ -34,11 +39,10 @@ app.post('/generate', (req, res) => {
 		});
 		child_process.on('close', (code) => {
 			console.log(`child process exited with code ${code}`);
+			console.log('video: '+videoPath);
+			res.send(videoPath);
 		});
 	}
-
-	console.log('video: '+videoPath);
-	res.send(videoPath);
 });
 
 app.listen(port, () => console.log(`App listening on port ${port}.`))
