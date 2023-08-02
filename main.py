@@ -1,17 +1,10 @@
 import argparse, sys
+import json
 
 import mixVideo
 import text
 import voice
 import text2video
-
-
-def getLine(text, type, line):
-	script_start = text.index(type+':') + len(type+':')
-	script_end = text.index('\n\n')
-	if type == 'Prompts': script_end = -1
-	paragraph = text[script_start:script_end].strip().split('\n')[line].split('. ', 1)[-1]
-	return paragraph
 
 
 def main():
@@ -31,12 +24,12 @@ def main():
 	input = args.prompt
 
 	print("Generating script.")
-	generated_text = text.Text(input)
+	generated_text = json.loads(text.Text(input))
 
-	script = getLine(generated_text, "Scripts", 0)
+	script = generated_text['Scripts'][0]
 	print('Script: ' + script)
 
-	prompt = getLine(generated_text, "Prompts", 0)
+	prompt = generated_text['Prompts'][0]
 	print('Prompt: ' + prompt)
 
 	generated_voice = voice.Voice(script)
