@@ -6,7 +6,7 @@ module.exports = {
     },
     "extends": [
         "eslint:recommended",
-        "plugin:vue/vue3-recommended"
+        "plugin:vue/essential"
     ],
     "parserOptions": {
         "ecmaVersion": 12,
@@ -16,6 +16,7 @@ module.exports = {
         "vue"
     ],
     "rules": {
-        "vue/no-multiple-template-root": "off"
+        "vue/no-multiple-template-root": "off",
+        'vue/multi-word-component-names': 'off'
     }
 };

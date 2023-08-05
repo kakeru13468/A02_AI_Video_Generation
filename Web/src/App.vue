@@ -20,17 +20,18 @@
   <div class="container gap-4 mx-auto pt-12">
     <div class="grid grid-cols-12 gap-1 ">
       <textarea class="flex-wrap sm:col-span-12 md:col-span-10 lg:col-span-10 h-8 border max-h-24 resize-none area-lg"
-        placeholder="prompt" v-model="promptData" onkeydown="if(event.keyCode==13)return false;" @keyup.enter.prevent="getPrompt()"></textarea>
+        placeholder="prompt" v-model="promptData" onkeydown="if(event.keyCode==13)return false;"
+        @keyup.enter.prevent="getPrompt()"></textarea>
       <button type="button"
         class="bg-blue-500 hover:bg-blue-700 text-white font-bold px-2 sm:col-span-12 md:col-span-2 lg:col-span-2 rounded-full "
-        @click="getPrompt()" >generate</button>
+        @click="getPrompt()">generate</button>
 
       <div
         class="sm:col-span-12 md:col-start-1 md:col-end-6 lg:col-start-1 lg:col-end-4 w-full p-4 bg-indigo-400 rounded overflow-hidden shadow-lg">
         Parameter
       </div>
 
-      <div 
+      <div
         class="sm:col-span-12 md:col-start-1 md:col-end-6 lg:col-start-1 lg:col-end-4 mt-4 w-full p-4 bg-teal-500 rounded overflow-hidden shadow-lg relative">
         Script
         <div class="flex justify-between items-start">
@@ -41,7 +42,7 @@
 
       <div class="sm:col-span-12 md:col-start-6 md:col-end-13 md:row-start-2 md:row-end-4 lg:col-start-4 lg:col-end-13">
         <video class="w-full col-span-full rounded aspect-video bg-black" controls></video>
-        <div class="mt-4 flex ">
+        <div class="mt-4 mx-4 flex ">
           <span id="videoName" class="mr-3 py-1 px-2">My Video</span>
           <button
             class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
@@ -50,9 +51,25 @@
             </svg>
             <span>Download</span>
           </button>
+          <div class="px-4">
+            <ScriptBotton text="Script place" color="blue" @click="showed = true" />
+          </div>
         </div>
       </div>
     </div>
+  </div>
+
+  <div :class="[
+    'w-screen h-screen',
+    'p-5',
+    'flex flex-col items-center gap-2'
+  ]">
+    <ScriptContent title="Script" :showModal="showed" @closing="showed = false">
+      <template v-slot:itemText>
+        {{promptData}}
+      </template>
+    </ScriptContent>
+
   </div>
 
   <footer class="p-4 bg-neutral-50 text-center lg:text-left">
@@ -63,13 +80,19 @@
 </template>
 
 <script>
+import ScriptBotton from './components/ScriptBotton.vue'
+import ScriptContent from './components/ScriptContent.vue'
 export default {
   name: 'App',
-  components: {},
   data() {
     return {
       promptData: '',
+      showed: false,
     }
+  },
+  components: {
+    ScriptBotton,
+    ScriptContent,
   },
   methods: {
     getPrompt() {
@@ -77,9 +100,8 @@ export default {
         prompt: this.promptData
       }
       console.log(usePrompt)
-      this.promptData=''
     },
-  }
+  },
 }
 </script>
 
