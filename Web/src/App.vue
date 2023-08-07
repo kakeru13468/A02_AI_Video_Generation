@@ -4,7 +4,7 @@
       <nav class="w-full rounded-md" aria-label="breadcrumb">
         <ol class="list-reset ml-2 flex">
           <li>
-            <a href="#" class="text-neutral-700 bg-neutral-50">Doc</a>
+            <a href="https://github.com/kakeru13468/A02_AI_Video_Generation" target="_blank" class="text-neutral-700 bg-neutral-50">Doc</a>
           </li>
           <li>
             <span class="mx-2 text-neutral-500 dark:text-neutral-200">/</span>
@@ -23,7 +23,7 @@
         placeholder="prompt" v-model="promptData" onkeydown="if(event.keyCode==13)return false;"
         @keyup.enter.prevent="getPrompt()"></textarea>
       <button type="button"
-        class="bg-blue-500 hover:bg-blue-700 text-white font-bold px-2 sm:col-span-12 md:col-span-2 lg:col-span-2 rounded-full "
+        class="transition-all hover:scale-105 active:scale-95 bg-blue-500 hover:bg-blue-700 text-white font-bold px-2 sm:col-span-12 md:col-span-2 lg:col-span-2 rounded-full "
         @click="getPrompt()">generate</button>
 
       <div
@@ -45,7 +45,7 @@
         <div class="mt-4 mx-4 flex ">
           <span id="videoName" class="mr-3 py-1 px-2">My Video</span>
           <button
-            class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
+            class="transition-all hover:scale-105 active:scale-95 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
             <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
               <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" />
             </svg>
@@ -65,8 +65,11 @@
     'flex flex-col items-center gap-2'
   ]">
     <ScriptContent title="Script" :showModal="showed" @closing="showed = false">
-      <template v-slot:itemText>
+      <template v-slot:LeftItemText>
         {{promptData}}
+      </template>
+      <template v-slot:RightItemText>
+        return GPT Script
       </template>
     </ScriptContent>
 
@@ -96,10 +99,7 @@ export default {
   },
   methods: {
     getPrompt() {
-      const usePrompt = {
-        prompt: this.promptData
-      }
-      console.log(usePrompt)
+      this.promptData
     },
   },
 }
