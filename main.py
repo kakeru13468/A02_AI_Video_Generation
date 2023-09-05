@@ -24,7 +24,14 @@ def main():
 	input = args.prompt
 
 	print("Generating script.")
-	generated_text = json.loads(text.Text(input))
+	ans = text.Text(input)
+	try:
+		generated_text = json.loads(ans)
+		print("GPT response: ")
+	except:
+		print("Error: Can't parse GPT response.")
+		print("Using example text.")
+		generated_text = {"Scripts": ["A black Labrador runs out from a house towards the beach."], "Prompts": ["A black Labrador runs out from a house towards the beach."]}
 
 	script = generated_text['Scripts'][0]
 	print('Script: ' + script)
