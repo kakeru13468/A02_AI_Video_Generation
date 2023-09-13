@@ -22,7 +22,7 @@ export default {
   },
   computed: {
     videoSrc() {
-      return 'http://localhost:3000/videos/' + this.videoName;
+      return 'http://' + window.location.hostname + ':3000/videos/' + this.videoName;
     }
   },
   components: {
