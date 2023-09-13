@@ -1,5 +1,6 @@
 import argparse, sys
 import json
+import os
 
 import mixVideo
 import text
@@ -45,6 +46,10 @@ def main():
 	videoName =  str(abs(hash(script + prompt))) + ".mp4"
 
 	outputPath = "./Web/videos/" + videoName
+
+	if not os.path.exists("./Web/videos/"):
+		os.mkdir("./Web/videos/")
+
 	mixVideo.merge_video_audio(video, generated_voice, outputPath)
 	print(videoName)
 
