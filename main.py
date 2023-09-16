@@ -1,5 +1,6 @@
 import argparse, sys
 import json
+import os
 
 import mixVideo
 import text
@@ -24,7 +25,14 @@ def main():
 	input = args.prompt
 
 	print("Generating script.")
-	generated_text = json.loads(text.Text(input))
+	ans = text.Text(input)
+	try:
+		generated_text = json.loads(ans)
+		print("GPT response: ")
+	except:
+		print("Error: Can't parse GPT response.")
+		print("Using example text.")
+		generated_text = {"Scripts": ["A black Labrador runs out from a house towards the beach."], "Prompts": ["A black Labrador runs out from a house towards the beach."]}
 
 	script = generated_text['Scripts'][0]
 	print('Script: ' + script)
@@ -38,6 +46,10 @@ def main():
 	videoName =  str(abs(hash(script + prompt))) + ".mp4"
 
 	outputPath = "./Web/videos/" + videoName
+
+	if not os.path.exists("./Web/videos/"):
+		os.mkdir("./Web/videos/")
+
 	mixVideo.merge_video_audio(video, generated_voice, outputPath)
 	print(videoName)
 
