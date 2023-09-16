@@ -12,12 +12,14 @@ def main():
 	parser=argparse.ArgumentParser()
 
 	dry_run = False
-
+	scriptPath = "/home/kakeru/A02Project/A02_AI_Video_Generation/Web/static/script.json"
+	promptPath = "/home/kakeru/A02Project/A02_AI_Video_Generation/Web/static/prompt.json"
+    
 	parser.add_argument("--dry-run", help="use example video", action="store_true")
 	parser.add_argument("prompt", help="prompt to generate video from",nargs='+')
 	args = parser.parse_args()
 
-	if args.dry_run: dry_run = True
+	if args.dry_run: dry_run = False
 
 	#combine args.prompt into one string
 	args.prompt = ' '.join(args.prompt)
@@ -25,10 +27,11 @@ def main():
 	input = args.prompt
 
 	print("Generating script.")
-	ans = text.Text(input)
+	ans = text.Text(input) 
 	try:
 		generated_text = json.loads(ans)
 		print("GPT response: ")
+
 	except:
 		print("Error: Can't parse GPT response.")
 		print("Using example text.")
@@ -40,6 +43,10 @@ def main():
 	prompt = generated_text['Prompts'][0]
 	print('Prompt: ' + prompt)
 
+	with open(scriptPath, "w", encoding="utf-8") as scriptFile:
+		json.dump(script, scriptFile,indent=4)
+	with open(promptPath, "w", encoding="utf-8") as promptFile:
+		json.dump(prompt, promptFile,indent=4)
 	generated_voice = voice.Voice(script)
 	video = text2video.text2video(prompt, fps=4, dry_run=dry_run)
 
