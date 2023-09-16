@@ -122,12 +122,12 @@ export default {
       axios.post('/api/generate', {}, { params: { prompt: prompt, dry_run: 'yeah' } })
         .then(response => {
           this.videoName =  response.data;
+          this.scriptData = scriptJson;
+          this.promptData = promptJson; 
         })
         .catch(error => {
           console.log(error)
         })
-      this.scriptData = scriptJson
-      this.promptData = promptJson  
     },
   },
  
