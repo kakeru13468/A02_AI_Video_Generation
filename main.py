@@ -36,29 +36,49 @@ def main():
 		print("Error: Can't parse GPT response.")
 		print("Using example text.")
 		generated_text = {"Scripts": ["A black Labrador runs out from a house towards the beach."], "Prompts": ["A black Labrador runs out from a house towards the beach."]}
+            
+	for i in range(5):
+		script = generated_text['Scripts'][i]
+		print(i, script)
+		prompt = generated_text['Prompts'][i]
+		print(i, prompt)
 
-	script = generated_text['Scripts'][0]
-	print('Script: ' + script)
+		with open(scriptPath, "w", encoding="utf-8") as scriptFile:
+			json.dump(script, scriptFile, indent=4)
+		with open(promptPath, "w", encoding="utf-8") as promptFile:
+			json.dump(prompt, promptFile, indent=4)
+		generated_voice = voice.Voice(script)
+		video = text2video.text2video(prompt, fps=4, dry_run=dry_run)
 
-	prompt = generated_text['Prompts'][0]
-	print('Prompt: ' + prompt)
+		videoName = str(abs(hash(script + prompt))) + ".mp4"
 
-	with open(scriptPath, "w", encoding="utf-8") as scriptFile:
-		json.dump(script, scriptFile,indent=4)
-	with open(promptPath, "w", encoding="utf-8") as promptFile:
-		json.dump(prompt, promptFile,indent=4)
-	generated_voice = voice.Voice(script)
-	video = text2video.text2video(prompt, fps=4, dry_run=dry_run)
+		outputPath = "./Web/videos/" + videoName
 
-	videoName =  str(abs(hash(script + prompt))) + ".mp4"
+		if not os.path.exists("./Web/videos/"):
+			os.mkdir("./Web/videos/")
 
-	outputPath = "./Web/videos/" + videoName
+		mixVideo.merge_video_audio(video, generated_voice, outputPath)
+		print(videoName)
 
-	if not os.path.exists("./Web/videos/"):
-		os.mkdir("./Web/videos/")
+	outputPathResult = []
 
-	mixVideo.merge_video_audio(video, generated_voice, outputPath)
-	print(videoName)
+	for root, dirs, files in os.walk("./Web/videos"):
+		files.sort()
+		for file in files:
+			# 如果附檔名為 .mp4
+			if os.path.splitext(file)[1] == '.mp4':
+				# 串接成完整路徑
+				filePath = os.path.join(root, file)
+				# 載入影片
+				video = VideoFileClip(filePath)
+				# 加入到陣列
+				outputPathResult.append(video)
+	# 串接影片
+	final_clip = concatenate_videoclips(outputPathResult)
+
+	final_video = "./Web/videos/target.mp4"
+	# 生成目標影片
+	final_clip.to_videofile(final_video, fps=24, remove_temp=False)
 
 if __name__ == '__main__':
 	main()
