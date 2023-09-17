@@ -36,6 +36,8 @@ def main():
 		print("Error: Can't parse GPT response.")
 		print("Using example text.")
 		generated_text = {"Scripts": ["A black Labrador runs out from a house towards the beach."], "Prompts": ["A black Labrador runs out from a house towards the beach."]}
+
+	outputPathResult = []
             
 	for i in range(5):
 		script = generated_text['Scripts'][i]
@@ -58,21 +60,14 @@ def main():
 			os.mkdir("./Web/videos/")
 
 		mixVideo.merge_video_audio(video, generated_voice, outputPath)
+
+		 # 載入影片
+		video = VideoFileClip(outputPath)
+		# 加入到陣列
+		outputPathResult.append(video)
+	
 		print(videoName)
 
-	outputPathResult = []
-
-	for root, dirs, files in os.walk("./Web/videos"):
-		files.sort()
-		for file in files:
-			# 如果附檔名為 .mp4
-			if os.path.splitext(file)[1] == '.mp4':
-				# 串接成完整路徑
-				filePath = os.path.join(root, file)
-				# 載入影片
-				video = VideoFileClip(filePath)
-				# 加入到陣列
-				outputPathResult.append(video)
 	# 串接影片
 	final_clip = concatenate_videoclips(outputPathResult)
 
