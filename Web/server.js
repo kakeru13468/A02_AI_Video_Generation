@@ -30,15 +30,13 @@ app.post('/generate', (req, res) => {
 		
 		child_process.stdout.on('data', (data) => {
 			console.log(`stdout: ${data}`);
-			if (String(data).match(/[\d]*\.mp4/)) {
-				videoPath = String(data).match(/[\d]*\.mp4/)[0];
-			}
 		});
 		child_process.stderr.on('data', (data) => {
 			console.log(`stderr: ${data}`);
 		});
 		child_process.on('close', (code) => {
 			console.log(`child process exited with code ${code}`);
+			videoPath = 'target.mp4'
 			console.log('video: '+videoPath);
 			res.send(videoPath);
 		});

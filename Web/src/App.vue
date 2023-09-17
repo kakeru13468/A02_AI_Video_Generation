@@ -19,8 +19,8 @@
   </nav>
   <div class="container gap-4 mx-auto pt-12">
     <div class="grid grid-cols-12 gap-1 ">
-      <textarea class="flex-wrap sm:col-span-12 md:col-span-10 lg:col-span-10 h-8 border max-h-24 resize-none area-lg" 
-      v-model="prompt"></textarea>
+      <textarea class="flex-wrap sm:col-span-12 md:col-span-10 lg:col-span-10 h-8 border max-h-24 resize-none area-lg"
+        v-model="prompt"></textarea>
       <!-- ,generateVideo(promptData) -->
       <button type="button"
         class="transition-all hover:scale-105 active:scale-95 bg-blue-500 hover:bg-blue-700 text-white font-bold px-2 sm:col-span-12 md:col-span-2 lg:col-span-2 rounded-full "
@@ -89,8 +89,8 @@
 <script>
 import ScriptBotton from './components/ScriptBotton.vue'
 import ScriptContent from './components/ScriptContent.vue'
-import scriptJson from '/home/kakeru/A02Project/A02_AI_Video_Generation/Web/static/script.json'
-import promptJson from '/home/kakeru/A02Project/A02_AI_Video_Generation/Web/static/prompt.json'
+import scriptJson from '../static/script.json'
+import promptJson from '../static/prompt.json'
 import axios from 'axios';
 
 export default {
@@ -101,7 +101,7 @@ export default {
       showed: false,
       prompt: '',
       scriptData: '',
-      promptData:'',
+      promptData: '',
     }
   },
   computed: {
@@ -116,21 +116,21 @@ export default {
   methods: {
     getPrompt() {
       this.prompt
-      
+
     },
     generateVideo(prompt) {
       axios.post('/api/generate', {}, { params: { prompt: prompt, dry_run: 'yeah' } })
         .then(response => {
-          this.videoName =  response.data;
+          this.videoName = response.data;
           this.scriptData = scriptJson;
-          this.promptData = promptJson; 
+          this.promptData = promptJson;
         })
         .catch(error => {
           console.log(error)
         })
     },
   },
- 
+
 }
 </script>
 

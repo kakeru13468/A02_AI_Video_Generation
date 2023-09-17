@@ -6,14 +6,18 @@ import mixVideo
 import text
 import voice
 import text2video
-
+from moviepy.editor import *
 
 def main():
 	parser=argparse.ArgumentParser()
 
 	dry_run = False
+	
+	if not os.path.exists("./Web/static/"):
+		os.mkdir("./Web/static/")
+
 	scriptPath = "./Web/static/script.json"
-	promptPath = ".Web/static/prompt.json"
+	promptPath = "./Web/static/prompt.json"
     
 	parser.add_argument("--dry-run", help="use example video", action="store_true")
 	parser.add_argument("prompt", help="prompt to generate video from",nargs='+')
@@ -65,8 +69,6 @@ def main():
 		video = VideoFileClip(outputPath)
 		# 加入到陣列
 		outputPathResult.append(video)
-	
-		print(videoName)
 
 	# 串接影片
 	final_clip = concatenate_videoclips(outputPathResult)
