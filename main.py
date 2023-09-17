@@ -12,8 +12,8 @@ def main():
 	parser=argparse.ArgumentParser()
 
 	dry_run = False
-	scriptPath = "/home/kakeru/A02Project/A02_AI_Video_Generation/Web/static/script.json"
-	promptPath = "/home/kakeru/A02Project/A02_AI_Video_Generation/Web/static/prompt.json"
+	scriptPath = "./Web/static/script.json"
+	promptPath = ".Web/static/prompt.json"
     
 	parser.add_argument("--dry-run", help="use example video", action="store_true")
 	parser.add_argument("prompt", help="prompt to generate video from",nargs='+')
