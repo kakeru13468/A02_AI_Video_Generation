@@ -65,8 +65,10 @@
       {{ prompt }}
     </template>
     <template v-slot:RightItemText>
-      Script: {{ scriptData }}<br>
-      Prompt: {{ promptData }}
+    <div v-for="text in texts" :key="text">
+      Script: {{ text.script }}<br>
+      Prompt: {{ text.prompt }}
+    </div>
     </template>
   </ScriptContent>
 
@@ -89,8 +91,6 @@
 <script>
 import ScriptBotton from './components/ScriptBotton.vue'
 import ScriptContent from './components/ScriptContent.vue'
-import scriptJson from '../static/script.json'
-import promptJson from '../static/prompt.json'
 import axios from 'axios';
 
 export default {
@@ -102,6 +102,7 @@ export default {
       prompt: '',
       scriptData: '',
       promptData: '',
+      texts: '',
     }
   },
   computed: {
@@ -121,9 +122,8 @@ export default {
     generateVideo(prompt) {
       axios.post('/api/generate', {}, { params: { prompt: prompt, dry_run: 'yeah' } })
         .then(response => {
-          this.videoName = response.data;
-          this.scriptData = scriptJson;
-          this.promptData = promptJson;
+          this.videoName = response.data.videoPath;
+          this.texts = response.data.texts;
         })
         .catch(error => {
           console.log(error)
