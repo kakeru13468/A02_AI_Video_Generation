@@ -41,7 +41,7 @@ def main():
 		generated_text = {"script": "A black Labrador runs out from a house towards the beach.",
 						"prompt": "A black Labrador runs out from a house towards the beach."}
 
-	outputPathResult = []
+	clips = []
 
 	for i in generated_text:
 		script = i['script']
@@ -62,16 +62,16 @@ def main():
 		mixVideo.merge_video_audio(generated_video, generated_voice, outputPath)
 
 		 # 載入影片
-		video = VideoFileClip(outputPath)
+		clip = VideoFileClip(outputPath)
 		# 加入到陣列
-		outputPathResult.append(video)
+		clips.append(clip)
 
 	# 串接影片
-	final_clip = concatenate_videoclips(outputPathResult)
+	final_video = concatenate_videoclips(clips)
 
-	final_video = "./Web/videos/target.mp4"
+	final_video_path = "./Web/videos/target.mp4"
 	# 生成目標影片
-	final_clip.to_videofile(final_video, fps=24, remove_temp=False)
+	final_video.to_videofile(final_video_path, fps=24, remove_temp=False)
 
 if __name__ == '__main__':
 	main()
