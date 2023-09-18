@@ -12,9 +12,6 @@ def main():
 	parser=argparse.ArgumentParser()
 
 	dry_run = False
-	
-	if not os.path.exists("./Web/static/"):
-		os.mkdir("./Web/static/")
 
 	parser.add_argument("--dry-run", help="use example video", action="store_true")
 	parser.add_argument("prompt", help="prompt to generate video from",nargs='+')
@@ -27,9 +24,17 @@ def main():
 
 	input = args.prompt
 
-	print("Generating script.")
+	print("Generating prompts & scripts.")
+
 	ans = text.Text(input)
-	text_path = "./Web/static/text.json"
+
+	text_file_name = str(abs(hash(ans))) + ".json"
+	text_file_dir = "media/texts/"
+	text_path = text_file_dir + text_file_name
+
+	if not os.path.exists(text_file_dir):
+		os.mkdir(text_file_dir)
+
 	try:
 		generated_texts = json.loads(ans)
 		with open(text_path, "w", encoding="utf-8") as text_file:
@@ -38,15 +43,16 @@ def main():
 	except:
 		print("Error: Can't parse GPT response.")
 		print("Using example text.")
-		generated_texts = {"script": "A black Labrador runs out from a house towards the beach.",
-						"prompt": "A black Labrador runs out from a house towards the beach."}
+
+		generated_texts = [{"script": "A black Labrador runs out from a house towards the beach.",
+						"prompt": "A black Labrador runs out from a house towards the beach."}]
 
 	clips = []
 
-	for text in generated_texts:
-		script = text['script']
+	for generated_text in generated_texts:
+		script = generated_text['script']
 		print(script)
-		prompt = text['prompt']
+		prompt = generated_text['prompt']
 		print(prompt)
 
 		generated_voice = voice.Voice(script)
