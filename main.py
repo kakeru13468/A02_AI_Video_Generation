@@ -31,22 +31,22 @@ def main():
 	ans = text.Text(input)
 	text_path = "./Web/static/text.json"
 	try:
-		generated_text = json.loads(ans)
+		generated_texts = json.loads(ans)
 		with open(text_path, "w", encoding="utf-8") as text_file:
-			json.dump(generated_text, text_file, indent=4)
+			json.dump(generated_texts, text_file, indent=4)
 
 	except:
 		print("Error: Can't parse GPT response.")
 		print("Using example text.")
-		generated_text = {"script": "A black Labrador runs out from a house towards the beach.",
+		generated_texts = {"script": "A black Labrador runs out from a house towards the beach.",
 						"prompt": "A black Labrador runs out from a house towards the beach."}
 
 	clips = []
 
-	for i in generated_text:
-		script = i['script']
+	for text in generated_texts:
+		script = text['script']
 		print(script)
-		prompt = i['prompt']
+		prompt = text['prompt']
 		print(prompt)
 
 		generated_voice = voice.Voice(script)
