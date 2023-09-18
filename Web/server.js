@@ -23,6 +23,7 @@ app.post('/generate', (req, res) => {
 	}
 	else {
 		let args = [path.join(absolutePath, 'main.py'), prompt, dry_run? '--dry-run' : ''];
+		let result = {};
 
 		let child_process = spawn('python', args, {cwd: absolutePath});
 		console.log('##### start generating #####');
@@ -30,15 +31,20 @@ app.post('/generate', (req, res) => {
 		
 		child_process.stdout.on('data', (data) => {
 			console.log(`stdout: ${data}`);
+			if (String(data).match(/[\d]*\.json/)) {
+				textsPath = String(data).match(/[\d]*\.json/)[0];
+				texts = require(path.join(absolutePath, "media", "texts", textsPath));
+				result.texts = texts;
+			}
 		});
 		child_process.stderr.on('data', (data) => {
 			console.log(`stderr: ${data}`);
 		});
 		child_process.on('close', (code) => {
 			console.log(`child process exited with code ${code}`);
-			videoPath = 'target.mp4'
+			result.videoPath = 'target.mp4'
 			console.log('video: '+videoPath);
-			res.send(videoPath);
+			res.send(result);
 		});
 	}
 });

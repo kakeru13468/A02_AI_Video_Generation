@@ -47,6 +47,9 @@ def main():
 		generated_texts = [{"script": "A black Labrador runs out from a house towards the beach.",
 						"prompt": "A black Labrador runs out from a house towards the beach."}]
 
+	# send text file name to node server
+	print("Prompts & scripts saved to " + text_path + ".")
+
 	clips = []
 
 	for generated_text in generated_texts:
