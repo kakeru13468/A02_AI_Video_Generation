@@ -37,8 +37,6 @@ def main():
 
 	try:
 		generated_texts = json.loads(ans)
-		with open(text_path, "w", encoding="utf-8") as text_file:
-			json.dump(generated_texts, text_file, indent=4)
 
 	except:
 		print("Error: Can't parse GPT response.")
@@ -46,6 +44,9 @@ def main():
 
 		generated_texts = [{"script": "A black Labrador runs out from a house towards the beach.",
 						"prompt": "A black Labrador runs out from a house towards the beach."}]
+
+	with open(text_path, "w", encoding="utf-8") as text_file:
+		json.dump(generated_texts, text_file, indent=4)
 
 	# send text file name to node server
 	print("Prompts & scripts saved to " + text_path + ".")
