@@ -50,7 +50,7 @@ def main():
 		print(prompt)
 
 		generated_voice = voice.Voice(script)
-		video = text2video.text2video(prompt, fps=4, dry_run=dry_run)
+		generated_video = text2video.text2video(prompt, fps=4, dry_run=dry_run)
 
 		videoName = str(abs(hash(script + prompt))) + ".mp4"
 
@@ -59,7 +59,7 @@ def main():
 		if not os.path.exists("./Web/videos/"):
 			os.mkdir("./Web/videos/")
 
-		mixVideo.merge_video_audio(video, generated_voice, outputPath)
+		mixVideo.merge_video_audio(generated_video, generated_voice, outputPath)
 
 		 # 載入影片
 		video = VideoFileClip(outputPath)
