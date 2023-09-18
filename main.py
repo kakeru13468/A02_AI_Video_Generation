@@ -34,7 +34,7 @@ def main():
 		generated_text = json.loads(ans)
 		with open(text_path, "w", encoding="utf-8") as text_file:
 			json.dump(generated_text, text_file, indent=4)
-		
+
 	except:
 		print("Error: Can't parse GPT response.")
 		print("Using example text.")
@@ -42,7 +42,7 @@ def main():
 						"prompt": "A black Labrador runs out from a house towards the beach."}
 
 	outputPathResult = []
-            
+
 	for i in generated_text:
 		script = i['script']
 		print(script)
