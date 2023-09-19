@@ -1,12 +1,26 @@
 import argparse, sys
 import json
 import os
+from concurrent.futures import ThreadPoolExecutor
 
 import mixVideo
 import text
 import voice
-import text2video
+from text2video import Generator
 from moviepy.editor import *
+
+generator = Generator()
+def generate_clip(prompt, script, dry_run=False):
+	generated_voice = voice.Voice(script)
+	generated_video = generator.text2video(prompt, fps=4, dry_run=dry_run)
+
+	videoName = str(abs(hash(script + prompt))) + ".mp4"
+
+	outputPath = "./Web/videos/" + videoName
+
+	mixVideo.merge_video_audio(generated_video, generated_voice, outputPath)
+
+	return outputPath
 
 def main():
 	parser=argparse.ArgumentParser()
@@ -53,27 +67,22 @@ def main():
 
 	clips = []
 
-	for generated_text in generated_texts:
-		script = generated_text['script']
-		print(script)
-		prompt = generated_text['prompt']
-		print(prompt)
+	executor = ThreadPoolExecutor(max_workers=3)
 
-		generated_voice = voice.Voice(script)
-		generated_video = text2video.text2video(prompt, fps=4, dry_run=dry_run)
+	if not os.path.exists("./Web/videos/"):
+		os.mkdir("./Web/videos/")
 
-		videoName = str(abs(hash(script + prompt))) + ".mp4"
+	scripts = [generated_text['script'] for generated_text in generated_texts]
+	prompts = [generated_text['prompt'] for generated_text in generated_texts]
 
-		outputPath = "./Web/videos/" + videoName
+	# generate clips in parallel
+	futures = executor.map(generate_clip, prompts, scripts)
+	executor.shutdown()
 
-		if not os.path.exists("./Web/videos/"):
-			os.mkdir("./Web/videos/")
+	results = list(futures)
 
-		mixVideo.merge_video_audio(generated_video, generated_voice, outputPath)
-
-		 # 載入影片
-		clip = VideoFileClip(outputPath)
-		# 加入到陣列
+	for clip_path in results:
+		clip = VideoFileClip(clip_path)
 		clips.append(clip)
 
 	# 串接影片
