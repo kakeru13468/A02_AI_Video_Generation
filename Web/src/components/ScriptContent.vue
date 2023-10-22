@@ -5,14 +5,17 @@
     'p-5',
     'flex justify-center items-center',
     showed ? 'opacity-100' : 'opacity-0 pointer-events-none',
-    'transition-all duration-300'
+    'transition-all duration-300',
+    'overwrite-hidden',
+    'overflow-auto'
   ]">
     <div class="absolute top-0 left-0 w-full h-full bg-black/50" @click="closing()" />
 
     <div :class="[
       'w-full max-w-sm bg-white rounded-md overflow-hidden z-10',
       showed ? 'scale-100' : 'scale-0',
-      'transition-all duration-300'
+      'transition-all duration-300',
+      'overflow-auto'
     ]">
       <div class="border-b-2 p-3 flex justify-between items-center">
         <div class="font-bold text-gray-700">
@@ -28,18 +31,21 @@
       </div>
 
       <div class="flex flex-col p-4 gap-4">
-        <div class="flex">
+        <div class="flex h-1/2">
           <div class="bg-gray-300 py-2 px-4 rounded-tl-xl rounded-br-xl">
             <slot name="LeftItemText">place</slot>
           </div>
         </div>
         <div class="flex justify-end">
-          <div class="bg-gray-300 py-2 px-4 rounded-tr-xl rounded-bl-xl">
-            <slot name="RightItemText">place</slot>
+          <div class="bg-gray-300 h-64 overflow-auto rounded-tr-xl rounded-bl-xl">
+            <slot name="RightItemText">
+              <div>
+              place
+              </div>
+            </slot>
           </div>
         </div>
       </div>
-      
     </div>
   </div>
 </template>
