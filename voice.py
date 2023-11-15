@@ -3,9 +3,15 @@ import azure.cognitiveservices.speech as speechsdk
 
 
 # TODO add language selection
-def Voice(text):
+def Voice(text, styledegree):
+    if styledegree == "":
+        styledegree = 2
+        print("styledegree: default")
+    else:
+        print("styledegree: ", styledegree)
+
     speech_config = speechsdk.SpeechConfig(
-        subscription="AZURE_API_KEY", region="eastasia"
+        subscription=os.environ.get("AZURE_SPEECH_KEY"), region="eastasia"
     )
 
     # speech_config.speech_synthesis_voice_name = 'zh-TW-HsiaoYuNeural'
@@ -13,7 +19,7 @@ def Voice(text):
     # ssml
     ssml = f"""
 		<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="en-US">
-            <voice name="zh-CN-YunxiNeural" style="cheerful" styledegree="2">
+            <voice name="zh-CN-YunxiNeural" style="cheerful" styledegree="{styledegree}">
 				{text}
             </voice>
         </speak>
