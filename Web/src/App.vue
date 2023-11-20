@@ -74,9 +74,27 @@
         </div>
       </div>
       <div class="sm:col-span-12 md:col-start-6 md:col-end-13 md:row-start-2 md:row-end-4 lg:col-start-4 lg:col-end-13">
-        <video :src=videoSrc class="w-full col-span-full md:col-span-9 rounded aspect-video bg-black" controls></video>
-        <div class="mt-4 mx-4 flex ">
-          <span id="videoName" class="mr-3 py-1 px-2">My Video</span>
+        <video v-if="videoName !== ''" :src=videoSrc
+          class="w-full col-span-full md:col-span-9 rounded aspect-video bg-black" controls></video>
+        <div v-else-if="isGenerating"
+          class=" w-full col-span-full md:col-span-9 rounded aspect-video bg-black progress-container">
+          <div class="progress">
+            <div class="color">
+              Generate
+            </div>
+          </div>
+        </div>
+        <div v-else class=" w-full col-span-full md:col-span-9 rounded aspect-video bg-indigo-400">
+          <div class="pt-4">
+            Generate step <br>
+            1. Input your text <br>
+            2. Choise video type and voice type <br>
+            3. Click generate button <br>
+            4. Generate!!!
+          </div>
+        </div>
+        <div class=" mt-4 mx-4 flex ">
+          <span id=" videoName" class="mr-3 py-1 px-2">My Video</span>
           <button
             class="transition-all hover:scale-105 active:scale-95 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
             <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -99,7 +117,7 @@
     <template v-slot:RightItemText>
       <div v-for="text in texts" :key="text">
         Script: {{ text.script }}<br>
-        Prompt: {{ text.prompt }}
+        <!-- Prompt: {{ text.prompt }} -->
       </div>
     </template>
   </ScriptContent>
@@ -127,6 +145,7 @@ export default {
       scriptData: '',
       promptData: '',
       texts: '',
+      isGenerating: false,
     }
   },
   computed: {
@@ -149,6 +168,7 @@ export default {
 
     },
     generateVideo(prompt) {
+      this.isGenerating = true;
       const videoType = this.$refs.videoTypeSelect.value;
       const voiceType = this.$refs.voiceTypeSelect.value;
       const combinedPrompt = prompt + ', prompt and script type: ' + videoType;
@@ -156,6 +176,7 @@ export default {
         .then(response => {
           this.videoName = response.data.videoPath;
           this.texts = response.data.texts;
+          this.isGenerating = false;
         })
         .catch(error => {
           console.log(error)
@@ -173,5 +194,52 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+
+.progress-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 90%;
+}
+
+.progress {
+  position: relative;
+  height: 40px;
+  width: 30%;
+  border: 11px solid #f4a261;
+  border-radius: 65px;
+}
+
+.progress .color {
+  position: absolute;
+  background-color: #ffffff;
+  top: 30;
+  width: 30px;
+  height: 20px;
+  border-radius: 45px;
+  animation: progres 4s infinite linear;
+}
+
+@keyframes progres {
+  0% {
+    width: 0%;
+  }
+
+  25% {
+    width: 50%;
+  }
+
+  50% {
+    width: 75%;
+  }
+
+  75% {
+    width: 85%;
+  }
+
+  100% {
+    width: 100%;
+  }
 }
 </style>
