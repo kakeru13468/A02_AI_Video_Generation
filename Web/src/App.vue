@@ -1,29 +1,30 @@
 <template>
-  <nav class="flex w-full flex-wrap items-center justify-between py-2 bg-neutral-50 lg:py-4">
+  <div class="flex w-full flex-wrap items-center justify-between py-2 bg-[#001D3D] lg:py-4 border-b-black">
     <div class="flex w-full flex-wrap items-center justify-between px-3">
       <nav class="w-full rounded-md" aria-label="breadcrumb">
         <ol class="list-reset ml-2 flex">
           <li>
             <a href="https://github.com/kakeru13468/A02_AI_Video_Generation" target="_blank"
-              class="text-neutral-700 bg-neutral-50">Doc</a>
+              class="text-white bg-[#001D3D]">Doc</a>
           </li>
           <li>
             <span class="mx-2 text-neutral-500 dark:text-neutral-200">/</span>
           </li>
           <li>
-            <a href="#" class="text-neutral-700 bg-neutral-50">about</a>
+            <a href="#" class="text-white bg-[#001D3D]">about</a>
           </li>
         </ol>
       </nav>
     </div>
-  </nav>
-  <div class="container gap-4 mx-auto pt-12">
+  </div>
+  <div class="gap-2 mx-auto pt-6 pb-6 px-6 bg-[#003566]">
     <div class="grid grid-cols-12 gap-1 ">
-      <textarea class="flex-wrap sm:col-span-12 md:col-span-10 lg:col-span-10 h-8 border max-h-24 resize-none area-lg"
+      <textarea
+        class="flex-wrap sm:col-span-12 md:col-span-10 lg:col-span-10 h-8 border max-h-24 resize-none area-lg border-solid border-4 border-black"
         v-model="prompt"></textarea>
       <!-- ,generateVideo(promptData) -->
       <button type="button"
-        class="transition-all hover:scale-105 active:scale-95 bg-blue-500 hover:bg-blue-700 text-white font-bold px-2 sm:col-span-12 md:col-span-2 lg:col-span-2 rounded-full "
+        class=" transition-all hover:scale-105 active:scale-95 bg-blue-500 hover:bg-blue-700 text-white font-bold px-2 sm:col-span-12 md:col-span-2 lg:col-span-2 rounded-full "
         @click="generateVideo(prompt), getPrompt()">generate</button>
       <!-- generateVideo(promptData) -->
 
@@ -32,7 +33,7 @@
         Parameter
       </div> -->
       <div
-        class="lg:col-start-1 lg:col-end-4 lg:row-start-2 lg:row-end-7 w-full h-full p-4 bg-indigo-400 rounded overflow-hidden shadow-lg">
+        class="lg:col-start-1 lg:col-end-4 lg:row-start-2 lg:row-end-7 w-full h-full p-4 bg-[#FFD60A] rounded overflow-hidden shadow-lg border-solid border-4 border-black">
 
         <!--video type-->
         <div class="pt-4">
@@ -84,19 +85,25 @@
             </div>
           </div>
         </div>
-        <div v-else class=" w-full col-span-full md:col-span-9 rounded aspect-video bg-indigo-400">
-          <div class="pt-4">
-            Generate step <br>
-            1. Input your text <br>
-            2. Choise video type and voice type <br>
-            3. Click generate button <br>
-            4. Generate!!!
+        <div v-else
+          class=" w-full col-span-full md:col-span-9 rounded aspect-video bg-[#FFD60A] border-solid border-4 border-black ">
+          <div class="pt-4 italic text-lg">
+            How to use?<br>
+            <div class="grid grid-cols-4 gap-4 place-content-center">
+              <StepButton title="1. Input your text "
+                text="suggest: There should be clear characters and specific actions, along with detailed locations."
+                note="note: Do not input the desired type of video; please select that in step 2." color="blue"
+                @click="updateStepId('Step1')" />
+              <StepButton title="2. Choise video type and voice type" color="blue" @click="updateStepId('Step2')" />
+              <StepButton title="3. Click generate button " color="blue" @click="updateStepId('Step3')" />
+              <StepButton title="4. Generate!!!" color="blue" @click="updateStepId('Step4')" />
+            </div>
           </div>
         </div>
         <div class=" mt-4 mx-4 flex ">
-          <span id=" videoName" class="mr-3 py-1 px-2">My Video</span>
+          <span id=" videoName" class="mr-3 py-1 px-2 text-white">My Video</span>
           <button
-            class="transition-all hover:scale-105 active:scale-95 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
+            class="border-2 border-blacktransition-all hover:scale-105 active:scale-95 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
             <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
               <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" />
             </svg>
@@ -122,9 +129,27 @@
     </template>
   </ScriptContent>
 
+  <StepContent :title="getTitleByStepId(currentStepId)" :showModal2="showed2" @closing="showed2 = false">
+    <template v-slot:Text>
+      <div v-if="currentStepId === 'Step1'">
+        1. A dog running in the beach<br>
+        2. A girl walking in the forest
+      </div>
+      <div v-else-if="currentStepId === 'Step2'">
+        Confirm the type of video you want.
+      </div>
+      <div v-else-if="currentStepId === 'Step3'">
+        Click the generate button after confirming the type of video.
+      </div>
+      <div v-else-if="currentStepId === 'Step4'">
+        The generated content is as follows:
+      </div>
+    </template>
+  </StepContent>
 
-  <footer class="p-4 bg-neutral-50 text-center lg:text-left">
-    <div class="p-4 text-center text-neutral-700 bg-neutral-50">
+
+  <footer class="bg-[#001D3D] text-center lg:text-left">
+    <div class="p-4 text-center text-white bg-[#001D3D]">
       © 2023 Copyright : A02 Project
     </div>
   </footer>
@@ -133,6 +158,8 @@
 <script>
 import ScriptBotton from './components/ScriptBotton.vue'
 import ScriptContent from './components/ScriptContent.vue'
+import StepContent from './components/StepContent.vue'
+import StepButton from './components/StepButton.vue'
 import axios from 'axios';
 
 export default {
@@ -141,6 +168,7 @@ export default {
     return {
       videoName: '',
       showed: false,
+      showed2: false,
       prompt: '',
       scriptData: '',
       promptData: '',
@@ -161,6 +189,8 @@ export default {
   components: {
     ScriptBotton,
     ScriptContent,
+    StepContent,
+    StepButton
   },
   methods: {
     getPrompt() {
@@ -182,8 +212,21 @@ export default {
           console.log(error)
         })
     },
-  },
+    updateStepId(stepId) {
+      this.currentStepId = stepId;
+      this.showed2 = true;
+    },
+    getTitleByStepId(stepId) {
+      const titleMap = {
+        'Step1': 'Example',
+        'Step2': 'Example',
+        'Step3': 'Example',
+        'Step4': 'Example'
+      };
 
+      return titleMap[stepId];
+    }
+  },
 }
 </script>
 
