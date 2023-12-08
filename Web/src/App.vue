@@ -1,24 +1,24 @@
 <template>
-  <div class="flex w-full flex-wrap items-center justify-between py-2 bg-[#001D3D] lg:py-4 border-b-black">
+  <header class="flex w-full flex-wrap items-center justify-between py-2 bg-[#21295c] lg:py-4 border-b-black">
     <div class="flex w-full flex-wrap items-center justify-between px-3">
       <nav class="w-full rounded-md" aria-label="breadcrumb">
         <ol class="list-reset ml-2 flex">
           <li>
             <a href="https://github.com/kakeru13468/A02_AI_Video_Generation" target="_blank"
-              class="text-white bg-[#001D3D]">Doc</a>
+              class="text-white bg-[#21295c]">Doc</a>
           </li>
           <li>
             <span class="mx-2 text-neutral-500 dark:text-neutral-200">/</span>
           </li>
           <li>
-            <a href="#" class="text-white bg-[#001D3D]">about</a>
+            <a href="#" class="text-white bg-[#21295c]">about</a>
           </li>
         </ol>
       </nav>
     </div>
-  </div>
-  <div class="gap-2 mx-auto pt-6 pb-6 px-6 bg-[#003566]">
-    <div class="grid grid-cols-12 gap-1 ">
+  </header>
+  <div class="gap-2 mx-auto pt-2 px-6 bg-[#1b3b6f]">
+    <div class="grid grid-cols-12 gap-1 mx-12">
       <textarea
         class="flex-wrap sm:col-span-12 md:col-span-10 lg:col-span-10 h-8 border max-h-24 resize-none area-lg border-solid border-4 border-black"
         v-model="prompt"></textarea>
@@ -33,10 +33,10 @@
         Parameter
       </div> -->
       <div
-        class="lg:col-start-1 lg:col-end-4 lg:row-start-2 lg:row-end-7 w-full h-full p-4 bg-[#FFD60A] rounded overflow-hidden shadow-lg border-solid border-4 border-black">
+        class="lg:col-start-1 lg:col-end-4 lg:row-start-2 lg:row-end-7 w-full h-full p-4 bg-[#000000] rounded overflow-hidden shadow-lg border-solid border-4 border-white">
 
         <!--video type-->
-        <div class="pt-4">
+        <div class="pt-4 text-white">
           Vdeo type
         </div>
         <!--select-->
@@ -53,7 +53,7 @@
             Select video type
           </label>
         </div>
-        <div class="pt-4">
+        <div class="pt-4 text-white">
           Voice style
         </div>
         <div class="relative  w-full min-w-[200px]">
@@ -74,7 +74,8 @@
           </label>
         </div>
       </div>
-      <div class="sm:col-span-12 md:col-start-6 md:col-end-13 md:row-start-2 md:row-end-4 lg:col-start-4 lg:col-end-13">
+      <div
+        class="px-2 sm:col-span-12 md:col-start-6 md:col-end-13 md:row-start-2 md:row-end-4 lg:col-start-4 lg:col-end-13">
         <video v-if="videoName !== ''" :src=videoSrc
           class="w-full col-span-full md:col-span-9 rounded aspect-video bg-black" controls></video>
         <div v-else-if="isGenerating"
@@ -86,17 +87,25 @@
           </div>
         </div>
         <div v-else
-          class=" w-full col-span-full md:col-span-9 rounded aspect-video bg-[#FFD60A] border-solid border-4 border-black ">
-          <div class="pt-4 italic text-lg">
+          class=" w-full px-2 col-span-full md:col-span-9 rounded aspect-video bg-[#000000] border-solid border-4 border-white ">
+          <div class="pt-4 italic text-lg text-white">
             How to use?<br>
             <div class="grid grid-cols-4 gap-4 place-content-center">
               <StepButton title="1. Input your text "
                 text="suggest: There should be clear characters and specific actions, along with detailed locations."
-                note="note: Do not input the desired type of video; please select that in step 2." color="blue"
+                note="note: Do not input the desired type of video; please select that in step 2." color="white"
                 @click="updateStepId('Step1')" />
-              <StepButton title="2. Choise video type and voice type" color="blue" @click="updateStepId('Step2')" />
-              <StepButton title="3. Click generate button " color="blue" @click="updateStepId('Step3')" />
-              <StepButton title="4. Generate!!!" color="blue" @click="updateStepId('Step4')" />
+              <StepButton title="2. Choise video type and voice type"
+                text="The range of the voice type represents the pitch variation of the voiceover. The larger the number, the greater the fluctuation."
+                note="note: If no selection is made, the default value of 2 will be used." color="white"
+                @click="updateStepId('Step2')" />
+              <StepButton title="3. Click generate button " text="You will see the progress bar during the generation."
+                note="note: During the generation process, please do not refresh the webpage or click the generate button again."
+                color="white" @click="updateStepId('Step3')" />
+              <StepButton title="4. Generate!!!"
+                text="You will see the generated video appear directly on the screen, and there will be a voiceover script in the script place."
+                note="If you want to generate again, remember to save the video, otherwise it will not be saved for you"
+                color="white" @click="updateStepId('Step4')" />
             </div>
           </div>
         </div>
@@ -148,8 +157,8 @@
   </StepContent>
 
 
-  <footer class="bg-[#001D3D] text-center lg:text-left">
-    <div class="p-4 text-center text-white bg-[#001D3D]">
+  <footer class="bg-[#21295c] text-center lg:text-left">
+    <div class="p-4 text-center text-white bg-[#21295c]">
       © 2023 Copyright : A02 Project
     </div>
   </footer>
