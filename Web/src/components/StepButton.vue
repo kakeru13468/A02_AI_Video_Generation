@@ -13,8 +13,8 @@
     ]">
 
         <div>
-            {{ title }}<br>
-            {{ text }}<br>
+            <div class="text-black">{{ title }}<br></div>
+            <div class="text-black">{{ text }}<br></div>
             <div class="text-red-700">{{ note }}</div>
 
         </div>
@@ -43,6 +43,7 @@ export default {
                 blue: 'bg-blue-500 hover:bg-blue-700 active:bg-blue-500',
                 red: 'bg-red-400 hover:bg-red-300 active:bg-red-500',
                 yellow: 'bg-yellow-400 hover:bg-yellow-300 active:bg-yellow-500',
+                white: 'bg-white hover:bg-gray-300 active:bg-gray-500'
             }[this.color]
         }
     }
@@ -51,7 +52,7 @@ export default {
 
 <style>
 .btn-style {
-    width: 250px;
+    width: 230px;
     height: 500px;
 }
 </style>
