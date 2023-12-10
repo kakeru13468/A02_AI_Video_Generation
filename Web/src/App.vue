@@ -37,7 +37,7 @@
 
         <!--video type-->
         <div class="pt-4 text-white">
-          Vdeo type
+          Video type
         </div>
         <!--select-->
         <div class="relative  w-full min-w-[200px]">
