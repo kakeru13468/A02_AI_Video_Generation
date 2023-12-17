@@ -16,6 +16,10 @@ def Voice(text, styledegree):
 
     # speech_config.speech_synthesis_voice_name = 'zh-TW-HsiaoYuNeural'
     speech_config.speech_synthesis_voice_name = "zh-CN-YunxiNeural"
+
+    # better audio quality. source: https://learn.microsoft.com/en-us/answers/questions/1153900/azure-text-to-speech-api-file-output-significantly
+    speech_config.set_speech_synthesis_output_format(speechsdk.SpeechSynthesisOutputFormat.Riff24Khz16BitMonoPcm)  
+
     # ssml
     ssml = f"""
 		<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="en-US">
